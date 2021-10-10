@@ -66,6 +66,15 @@ model_cnn.compile(optimizer='RMSprop',loss='binary_crossentropy',metrics=['accur
 # fit model_cnn
 model_cnn.fit(input_data,label,batch_size=256,validation_split=0.1,epochs=20)
 
+# serialize model to JSON
+model_json = model_cnn.to_json()
+with open("model.json", "w") as json_file:
+    json_file.write(model_json)
+    
+# serialize weights to HDF5
+model_cnn.save_weights("model.h5")
+print("Saved model to disk")
+
 
 
 
